@@ -22,12 +22,3 @@ production:
   <<: *default
   adapter: postgresql
   url: <%= ENV['DATABASE_URL'] %>
-
-
-
-
-
-
-
-
-furima_40042
