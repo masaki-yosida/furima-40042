@@ -14,11 +14,11 @@
 | birthday           | date       | null: false                   |
 
 ### Association
-- has_mane :user_comments
-- has_mane :comments
-- has_mane :items
-- has_mane :user_item
-- has_mane :purchases
+- has_many :user_comments
+- has_many :comments
+- has_many :items
+- has_many :user_item
+- has_many :purchases
 
 ## commentsテーブル
 
@@ -29,10 +29,10 @@
 | item_id  |            | null: false  foreign_key: true |
 
 ### Association
-- has_mane :users
-- has_mane :user_comments
-- has_mane :comments_item
-- has_mane :items
+- has_many :users
+- has_many :user_comments
+- has_many :comments_item
+- has_many :items
 
 ## user_commentsテーブル
 
@@ -59,10 +59,10 @@
 
 
 ### Association
-- has_mane :comments_item
-- has_mane :comments
-- has_mane :users
-- has_mane :user_item
+- has_many :comments_item
+- has_many :comments
+- has_many :users
+- has_many :user_item
 - has_one  :purchases
 
 ## comments_itemテーブル
