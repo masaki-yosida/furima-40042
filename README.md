@@ -103,7 +103,7 @@
 |prefectures      | string     | null: false                    |
 |municipalities   | string     | null: false                    |
 |street_address   | string     | null: false                    |
-|Building_name    | string     |                                |
+|building_name    | string     |                                |
 |telephone_number | string     | null: false                    |
 |purchases_id     | references | null: false  foreign_key: true |
 
