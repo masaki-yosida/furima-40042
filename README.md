@@ -94,9 +94,9 @@
 ### Association
 - belongs_to :users
 - belongs_to :items
-- has_one    :Shipping _address
+- has_one    :shipping _addresses
 
-## Shipping _addressテーブル
+## shipping_addressesテーブル
 | Column          | Type       | Options                        |
 | ------          | ---------- | ------------------------------ |
 |post_code        | string     | null: false                    |
