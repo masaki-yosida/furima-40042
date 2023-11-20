@@ -11,7 +11,7 @@
 |lastname_kanji      | string     | null: false                   |
 |firstname_kana      | string     | null: false                   |
 |lastname_kana       | string     | null: false                   |
-| birthday           | string     | null: false                   |
+| birthday           | date       | null: false                   |
 
 ### Association
 - has_mane :user_comments
