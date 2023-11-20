@@ -1,24 +1,109 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+| Column   | Type       | Options                        |
+| ------   | ---------- | ------------------------------ |
+|nickname  | string     | null: false,                   |
+| email    | string     | null: false,                   |
+|password  | string     | null: false,                   |
+|name_kanji| string     | null: false,                   |
+|name_kana | string     | null: false,                   |
+| birthday | string     | null: false,                   |
 
-* Ruby version
+### Association
+- has_mane :user_comments
+- has_mane :comments
+- has_mane :items
+- has_mane :user_item
+- has_mane :purchases
 
-* System dependencies
+## commentsテーブル
 
-* Configuration
+| Column   | Type       | Options                        |
+| ------   | ---------- | ------------------------------ |
+|  text    | text       | null: false,                   |
+| user_id  |            | null: false, foreign_key: true |
+| item_id  |            | null: false, foreign_key: true |
 
-* Database creation
+### Association
+- has_mane :users
+- has_mane :user_comments
+- has_mane :comments_item
+- has_mane :items
 
-* Database initialization
+## user_commentsテーブル
 
-* How to run the test suite
+| Column    | Type       | Options                        |
+| ------    | ---------- | ------------------------------ |
+| user_id   |            | null: false, foreign_key: true |
+|comment_id |            | null: false, foreign_key: true |
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
+- belongs_to :users
+- belongs_to :comments
 
-* Deployment instructions
+## itemsテーブル
 
-* ...
+| Column         | Type       | Options                        |
+| ------         | ---------- | ------------------------------ |
+|item_image      | references | null: false,                   |
+|item_name       | string     | null: false,                   |
+|item_explanation| string     | null: false,                   |
+|item_detail     | string     | null: false,                   |
+|item_delivery   | string     | null: false,                   |
+|item_price      | string     | null: false,                   |
+|user_id         | string     | null: false, foreign_key: true |
+
+
+### Association
+- has_mane :comments_item
+- has_mane :comments
+- has_mane :users
+- has_mane :user_item
+- has_one  :purchases
+
+## comments_itemテーブル
+| Column          | Type       | Options                        |
+| ------          | ---------- | ------------------------------ |
+|comments_id      |            | null: false, foreign_key: true |
+|item_id          |            | null: false, foreign_key: true |
+
+### Association
+- belongs_to :comments
+- belongs_to :items
+
+## user_itemテーブル
+| Column          | Type       | Options                        |
+| ------          | ---------- | ------------------------------ |
+|user_id          |            | null: false, foreign_key: true |
+|item_id          |            | null: false, foreign_key: true |
+
+### Association
+- belongs_to :group
+- belongs_to :user
+
+## purchasesテーブル
+| Column          | Type       | Options                        |
+| ------          | ---------- | ------------------------------ |
+|user_id          |            | null: false, foreign_key: true |
+|item_id          |            | null: false, foreign_key: true |
+
+### Association
+- belongs_to :users
+- belongs_to :items
+- has_one    :Shipping _address
+
+## Shipping _addressテーブル
+| Column          | Type       | Options                        |
+| ------          | ---------- | ------------------------------ |
+|post_code        | string     | null: false,                   |
+|prefectures      | string     | null: false,                   |
+|municipalities   | string     | null: false,                   |
+|street_address   | string     | null: false,                   |
+|Building_name    | string     |                                |
+|telephone_number | string     | null: false,                   |
+|purchases_id     | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :purchases
