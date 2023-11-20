@@ -22,11 +22,11 @@
 
 ## commentsテーブル
 
-| Column   | Type       | Options                        |
-| ------   | ---------- | ------------------------------ |
-|  text    | text       | null: false                    |
-| user_id  |            | null: false  foreign_key: true |
-| item_id  |            | null: false  foreign_key: true |
+| Column| Type       | Options                        |
+| ------| ---------- | ------------------------------ |
+|  text | text       | null: false                    |
+| user  |references  | null: false  foreign_key: true |
+| item  |references  | null: false  foreign_key: true |
 
 ### Association
 - has_many :users
@@ -36,10 +36,10 @@
 
 ## user_commentsテーブル
 
-| Column    | Type       | Options                        |
-| ------    | ---------- | ------------------------------ |
-| user_id   |            | null: false  foreign_key: true |
-|comment_id |            | null: false  foreign_key: true |
+| Column| Type       | Options                        |
+| ------| ---------- | ------------------------------ |
+| user  |references  | null: false  foreign_key: true |
+|comment|references  | null: false  foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -47,54 +47,57 @@
 
 ## itemsテーブル
 
-| Column         | Type       | Options                        |
-| ------         | ---------- | ------------------------------ |
-|item_image      | references | null: false                    |
-|item_name       | string     | null: false                    |
-|item_explanation| string     | null: false                    |
-|item_detail     | string     | null: false                    |
-|item_delivery   | string     | null: false                    |
-|item_price      | string     | null: false                    |
-|user_id         | string     | null: false  foreign_key: true |
+| Column            | Type       | Options                        |
+| ------            | ---------- | ------------------------------ |
+|item_image         | references | null: false                    |
+|item_name          | string     | null: false                    |
+|item_explanation   | text       | null: false                    |
+|category_id        | integer    | null: false                    |
+|situation_id       | integer    | null: false                    |
+|postage_id         | integer    | null: false                    |
+|shippingsource_id  | integer    | null: false                    |
+|deliverydays_id    | integer    | null: false                    |
+|price_id           | integer    | null: false                    |
+|user               | references | null: false  foreign_key: true |
 
 
 ### Association
 - has_many :comments_item
 - has_many :comments
-- has_many :users
+- belongs_to :user
 - has_many :user_item
-- has_one  :purchases
+- has_one  :purchase
 
 ## comments_itemテーブル
-| Column          | Type       | Options                        |
-| ------          | ---------- | ------------------------------ |
-|comments_id      |            | null: false  foreign_key: true |
-|item_id          |            | null: false  foreign_key: true |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+|comments| references | null: false  foreign_key: true |
+|item    | references | null: false  foreign_key: true |
 
 ### Association
 - belongs_to :comment
 - belongs_to :item
 
 ## user_itemテーブル
-| Column          | Type       | Options                        |
-| ------          | ---------- | ------------------------------ |
-|user_id          |            | null: false  foreign_key: true |
-|item_id          |            | null: false foreign_key: true |
+| Column    | Type       | Options                        |
+| ------    | ---------- | ------------------------------ |
+|user       |references  | null: false  foreign_key: true |
+|item       |references  | null: false foreign_key: true |
 
 ### Association
 - belongs_to :group
 - belongs_to :user
 
 ## purchasesテーブル
-| Column          | Type       | Options                        |
-| ------          | ---------- | ------------------------------ |
-|user_id          |            | null: false  foreign_key: true |
-|item_id          |            | null: false  foreign_key: true |
+| Column  | Type       | Options                        |
+| ------  | ---------- | ------------------------------ |
+|user     | references | null: false  foreign_key: true |
+|item     | references | null: false  foreign_key: true |
 
 ### Association
 - belongs_to :user
 - belongs_to :item
-- has_one    :articles
+- has_one    :shipping_addresses
 
 ## shipping_addressesテーブル
 | Column          | Type       | Options                        |
@@ -105,7 +108,7 @@
 |street_address   | string     | null: false                    |
 |building_name    | string     |                                |
 |telephone_number | string     | null: false                    |
-|purchase_id      | references | null: false  foreign_key: true |
+|purchase         | references | null: false  foreign_key: true |
 
 ### Association
-- belongs_to :genre
+- belongs_to :purchase
