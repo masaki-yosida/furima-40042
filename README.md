@@ -2,14 +2,14 @@
 
 ## usersテーブル
 
-| Column   | Type       | Options                       |
-| ------   | ---------- | ------------------------------|
-|nickname  | string     | null: false                   |
-| email    | string     | null: false   unique: true    |
-|password  | string     | null: false                   |
-|name_kanji| string     | null: false                   |
-|name_kana | string     | null: false                   |
-| birthday | string     | null: false                   |
+| Column             | Type       | Options                       |
+| ------             | ---------- | ------------------------------|
+|nickname            | string     | null: false                   |
+| email              | string     | null: false   unique: true    |
+|encrypted_password  | string     | null: false                   |
+|name_kanji          | string     | null: false                   |
+|name_kana           | string     | null: false                   |
+| birthday           | string     | null: false                   |
 
 ### Association
 - has_mane :user_comments
