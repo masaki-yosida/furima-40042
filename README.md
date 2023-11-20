@@ -2,14 +2,14 @@
 
 ## usersテーブル
 
-| Column   | Type       | Options                        |
-| ------   | ---------- | ------------------------------ |
-|nickname  | string     | null: false,                   |
-| email    | string     | null: false,                   |
-|password  | string     | null: false,                   |
-|name_kanji| string     | null: false,                   |
-|name_kana | string     | null: false,                   |
-| birthday | string     | null: false,                   |
+| Column   | Type       | Options                       |
+| ------   | ---------- | ------------------------------|
+|nickname  | string     | null: false                   |
+| email    | string     | null: false   unique: true    |
+|password  | string     | null: false                   |
+|name_kanji| string     | null: false                   |
+|name_kana | string     | null: false                   |
+| birthday | string     | null: false                   |
 
 ### Association
 - has_mane :user_comments
@@ -22,9 +22,9 @@
 
 | Column   | Type       | Options                        |
 | ------   | ---------- | ------------------------------ |
-|  text    | text       | null: false,                   |
-| user_id  |            | null: false, foreign_key: true |
-| item_id  |            | null: false, foreign_key: true |
+|  text    | text       | null: false                    |
+| user_id  |            | null: false  foreign_key: true |
+| item_id  |            | null: false  foreign_key: true |
 
 ### Association
 - has_mane :users
@@ -36,8 +36,8 @@
 
 | Column    | Type       | Options                        |
 | ------    | ---------- | ------------------------------ |
-| user_id   |            | null: false, foreign_key: true |
-|comment_id |            | null: false, foreign_key: true |
+| user_id   |            | null: false  foreign_key: true |
+|comment_id |            | null: false  foreign_key: true |
 
 ### Association
 - belongs_to :users
@@ -47,13 +47,13 @@
 
 | Column         | Type       | Options                        |
 | ------         | ---------- | ------------------------------ |
-|item_image      | references | null: false,                   |
-|item_name       | string     | null: false,                   |
-|item_explanation| string     | null: false,                   |
-|item_detail     | string     | null: false,                   |
-|item_delivery   | string     | null: false,                   |
-|item_price      | string     | null: false,                   |
-|user_id         | string     | null: false, foreign_key: true |
+|item_image      | references | null: false                    |
+|item_name       | string     | null: false                    |
+|item_explanation| string     | null: false                    |
+|item_detail     | string     | null: false                    |
+|item_delivery   | string     | null: false                    |
+|item_price      | string     | null: false                    |
+|user_id         | string     | null: false  foreign_key: true |
 
 
 ### Association
@@ -66,8 +66,8 @@
 ## comments_itemテーブル
 | Column          | Type       | Options                        |
 | ------          | ---------- | ------------------------------ |
-|comments_id      |            | null: false, foreign_key: true |
-|item_id          |            | null: false, foreign_key: true |
+|comments_id      |            | null: false  foreign_key: true |
+|item_id          |            | null: false  foreign_key: true |
 
 ### Association
 - belongs_to :comments
@@ -76,8 +76,8 @@
 ## user_itemテーブル
 | Column          | Type       | Options                        |
 | ------          | ---------- | ------------------------------ |
-|user_id          |            | null: false, foreign_key: true |
-|item_id          |            | null: false, foreign_key: true |
+|user_id          |            | null: false  foreign_key: true |
+|item_id          |            | null: false foreign_key: true |
 
 ### Association
 - belongs_to :group
@@ -86,8 +86,8 @@
 ## purchasesテーブル
 | Column          | Type       | Options                        |
 | ------          | ---------- | ------------------------------ |
-|user_id          |            | null: false, foreign_key: true |
-|item_id          |            | null: false, foreign_key: true |
+|user_id          |            | null: false  foreign_key: true |
+|item_id          |            | null: false  foreign_key: true |
 
 ### Association
 - belongs_to :users
@@ -97,13 +97,13 @@
 ## Shipping _addressテーブル
 | Column          | Type       | Options                        |
 | ------          | ---------- | ------------------------------ |
-|post_code        | string     | null: false,                   |
-|prefectures      | string     | null: false,                   |
-|municipalities   | string     | null: false,                   |
-|street_address   | string     | null: false,                   |
+|post_code        | string     | null: false                    |
+|prefectures      | string     | null: false                    |
+|municipalities   | string     | null: false                    |
+|street_address   | string     | null: false                    |
 |Building_name    | string     |                                |
-|telephone_number | string     | null: false,                   |
-|purchases_id     | references | null: false, foreign_key: true |
+|telephone_number | string     | null: false                    |
+|purchases_id     | references | null: false  foreign_key: true |
 
 ### Association
 - belongs_to :purchases
