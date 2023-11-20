@@ -42,8 +42,8 @@
 |comment_id |            | null: false  foreign_key: true |
 
 ### Association
-- belongs_to :users
-- belongs_to :comments
+- belongs_to :user
+- belongs_to :comment
 
 ## itemsテーブル
 
@@ -72,8 +72,8 @@
 |item_id          |            | null: false  foreign_key: true |
 
 ### Association
-- belongs_to :comments
-- belongs_to :items
+- belongs_to :comment
+- belongs_to :item
 
 ## user_itemテーブル
 | Column          | Type       | Options                        |
@@ -92,8 +92,8 @@
 |item_id          |            | null: false  foreign_key: true |
 
 ### Association
-- belongs_to :users
-- belongs_to :items
+- belongs_to :user
+- belongs_to :item
 - has_one    :articles
 
 ## shipping_addressesテーブル
@@ -105,7 +105,7 @@
 |street_address   | string     | null: false                    |
 |building_name    | string     |                                |
 |telephone_number | string     | null: false                    |
-|purchase_id     | references | null: false  foreign_key: true |
+|purchase_id      | references | null: false  foreign_key: true |
 
 ### Association
 - belongs_to :genre
