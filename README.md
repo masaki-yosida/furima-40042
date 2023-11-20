@@ -105,7 +105,7 @@
 |street_address   | string     | null: false                    |
 |building_name    | string     |                                |
 |telephone_number | string     | null: false                    |
-|purchases_id     | references | null: false  foreign_key: true |
+|purchase_id     | references | null: false  foreign_key: true |
 
 ### Association
 - belongs_to :genre
