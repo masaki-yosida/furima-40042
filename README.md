@@ -7,8 +7,10 @@
 |nickname            | string     | null: false                   |
 | email              | string     | null: false   unique: true    |
 |encrypted_password  | string     | null: false                   |
-|name_kanji          | string     | null: false                   |
-|name_kana           | string     | null: false                   |
+|firstname_kanji     | string     | null: false                   |
+|lastname_kanji      | string     | null: false                   |
+|firstname_kana      | string     | null: false                   |
+|lastname_kana       | string     | null: false                   |
 | birthday           | string     | null: false                   |
 
 ### Association
