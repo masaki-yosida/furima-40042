@@ -8,7 +8,7 @@
 | email              | string     | null: false   unique: true    |
 |encrypted_password  | string     | null: false                   |
 |firstname_kanji     | string     | null: false                   |
-|lastname_kanji      | string     | null: false                   |
+|lirstname_kanji     | string     | null: false                   |
 |firstname_kana      | string     | null: false                   |
 |lastname_kana       | string     | null: false                   |
 | birthday           | date       | null: false                   |
