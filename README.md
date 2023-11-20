@@ -94,7 +94,7 @@
 ### Association
 - belongs_to :users
 - belongs_to :items
-- has_one    :shipping _addresses
+- has_one    :articles
 
 ## shipping_addressesテーブル
 | Column          | Type       | Options                        |
@@ -108,4 +108,4 @@
 |purchases_id     | references | null: false  foreign_key: true |
 
 ### Association
-- belongs_to :purchases
+- belongs_to :genre
