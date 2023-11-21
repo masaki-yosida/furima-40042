@@ -80,3 +80,4 @@ group :production do
 end
 
 gem 'devise'
+gem 'rspec-rails', '~> 4.0.0'
