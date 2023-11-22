@@ -61,6 +61,20 @@ RSpec.describe User, type: :model do
       )
       expect(user).to be_valid
     end
+    it 'パスワードとパスワード（確認）が一致していれば登録できる' do
+      user = User.new(
+        nickname: 'test',
+        email: 'test@example.com',
+        password: 'Abcd1234',
+        password_confirmation: 'Abcd1234',
+        birthday: '1990-01-01',
+        firstname_kanji: '田中',
+        lirstname_kanji: '家',
+        firstname_kana: 'カナ',
+        lastname_kana: 'ミョウジ'
+      )
+      expect(user).to be_valid
+    end
 
   end
 end
