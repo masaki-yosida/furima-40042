@@ -18,4 +18,3 @@ class User < ApplicationRecord
   validates :firstname_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/, message: "is invalid. Input full-width katakana characters" }
   validates :lastname_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/, message: "is invalid. Input full-width katakana characters" }
   validates :email, presence: true, uniqueness: true
-end
