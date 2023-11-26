@@ -15,6 +15,7 @@
       <div class='form-text-wrap'>
         <label class="form-text">メールアドレス</label>
         <span class="indispensable">必須</span>
+        resource, url: session_path(resource_name), class: 'registration-main', local: true) do |f| %>
       </div>
       <%= f.email_field :email, class: "input-default", id: "email", placeholder: "PC・携帯どちらでも可", autofocus: true %>
     </div>

@@ -6,6 +6,6 @@ class ItemsController < ApplicationController
   end
 
   def restricted_action
-    # 認証が通ったユーザーのみがアクセスできるアクション
+  
   end
 end
