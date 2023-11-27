@@ -8,4 +8,8 @@ class ItemsController < ApplicationController
   def restricted_action
   
   end
+  def new
+    @item = Item.new
+    # 他に必要な初期化などがあればここで行う
+  end
 end
