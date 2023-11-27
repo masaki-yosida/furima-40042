@@ -1,9 +1,9 @@
 class User < ApplicationRecord
        devise :database_authenticatable, :registerable,
-              :recoverable, :rememberable
+              :recoverable, :rememberable, :validatable
      
        
-       validates :password, presence: true, length: { minimum: 6 }, format: { with: /\A(?=.*[a-zA-Z])(?=.*\d)/, message: "is invalid. Include both letters and numbers" }
+       validates :password, length: { minimum: 6 }, format: { with: /\A(?=.*[a-zA-Z])(?=.*\d)/, message: "is invalid. Include both letters and numbers" }
        validates_confirmation_of :password, message: "doesn't match Password"
        validates :nickname, presence: true
        validates :birthday, presence: true
