@@ -100,7 +100,7 @@ RSpec.describe User, type: :model do
       end
     
       it '姓（全角）に半角文字が含まれていると登録できない' do
-        @user.firstname_kanji = '田中' # 例として半角の文字列を含む
+        @user.firstname_kanji = 'Smith' # 例として半角の文字列を含む
         @user.valid?
         expect(@user).to be_invalid
       end
@@ -112,7 +112,7 @@ RSpec.describe User, type: :model do
       end
     
       it '名（全角）に半角文字が含まれていると登録できない' do
-        @user.lirstname_kanji = '太郎' # 例として半角の文字列を含む
+        @user.lirstname_kanji = 'Doe' # 例として半角の文字列を含む
         @user.valid?
         expect(@user).to be_invalid
       end
@@ -127,7 +127,7 @@ RSpec.describe User, type: :model do
       end
     
       it '姓（カナ）にカタカナ以外の文字が含まれていると登録できない' do
-        @user.firstname_kana = 'タナカ' # 例として平仮名を含む
+        @user.firstname_kana = '' # 例として平仮名を含む
         @user.valid?
         expect(@user).to be_invalid
       end
@@ -139,7 +139,7 @@ RSpec.describe User, type: :model do
       end
     
       it '名（カナ）にカタカナ以外の文字が含まれていると登録できない' do
-        @user.lastname_kana = 'タロウ' # 例として漢字を含む
+        @user.lastname_kana = '太郎' # 例として漢字を含む
         @user.valid?
         expect(@user).to be_invalid
       end
