@@ -89,12 +89,12 @@ RSpec.describe User, type: :model do
       end
 
       it 'パスワードとパスワード（確認用）が不一致だと登録できない' do
-        @user.password = 'password123'
-        @user.password_confirmation = 'mismatched_password'
-        @user.valid?
-        expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
-      end
-      
+  @user.password = 'password123'
+  @user.password_confirmation = 'mismatched_password'
+  @user.valid?
+  expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
+end
+
     end
 
     context '姓・名（全角）' do
