@@ -7,21 +7,19 @@ RSpec.describe User, type: :model do
 
   describe '正常系' do
     it '全ての項目が入力されていれば登録できる' do
-      user = User.new(
-        nickname: 'test',
-        email: 'test@example.com',
-        password: 'ValidPassword123',
-        password_confirmation: 'ValidPassword123',
-        birthday: '1990-01-01',
-        firstname_kanji: '田中',
-        lastname_kanji: '太郎',
-        firstname_kana: 'タナカ',
-        lastname_kana: 'タロウ',
-      )
+      @user.nickname = 'test'
+      @user.email = 'test@example.com'
+      @user.password = 'ValidPassword123'
+      @user.password_confirmation = 'ValidPassword123'
+      @user.birthday = '1990-01-01'
+      @user.firstname_kanji = '田中'
+      @user.lirstname_kanji = '太郎'
+      @user.firstname_kana = 'タナカ'
+      @user.lastname_kana = 'タロウ'
 
-      user.valid?
-      puts user.errors.full_messages
-      expect(user).to be_valid
+      @user.valid?
+      puts @user.errors.full_messages
+      expect(@user).to be_valid
     end
   end
 
@@ -105,10 +103,12 @@ RSpec.describe User, type: :model do
       end
 
       it '姓（全角）に半角文字が含まれていると登録できない' do
-        @user.firstname_kanji = '田中' # 例として半角の文字列を含む
+        @user.firstname_kanji = 'Smith' # Replace with a half-width character
         @user.valid?
-        expect(@user.errors.full_messages).to include 'is invalid. Input full-width characters'
+        expect(@user.errors.full_messages).to include "Firstname kanji is invalid. Input full-width characters"
       end
+      
+      
 
       it '名（全角）が空だと登録できない' do
         @user.lirstname_kanji = ''
@@ -117,10 +117,11 @@ RSpec.describe User, type: :model do
       end
 
       it '名（全角）に半角文字が含まれていると登録できない' do
-        @user.lirstname_kanji = '太郎' # 例として半角
+        @user.lirstname_kanji = 'John' # Replace with a half-width character
         @user.valid?
-        expect(@user.errors.full_messages).to include 'Lastname kanji is invalid'
+        expect(@user.errors.full_messages).to include "Lirstname kanji is invalid. Input full-width characters"
       end
+      
     end
 
     context '姓・名（カナ）' do
@@ -131,11 +132,11 @@ RSpec.describe User, type: :model do
       end
 
       it '姓（カナ）にカタカナ以外の文字が含まれていると登録できない' do
-        @user.firstname_kana = 'タナカ' # 例として平仮名を含む
+        @user.firstname_kana = 'John' # Replace with characters other than full-width katakana
         @user.valid?
-        expect(@user.errors.full_messages).to include 'Firstname kana is invalid'
+        expect(@user.errors.full_messages).to include "Firstname kana is invalid. Input full-width katakana characters"
       end
-
+      
       it '名（カナ）が空だと登録できない' do
         @user.lastname_kana = ''
         @user.valid?
@@ -143,10 +144,11 @@ RSpec.describe User, type: :model do
       end
 
       it '名（カナ）にカタカナ以外の文字が含まれていると登録できない' do
-        @user.lastname_kana = 'タロウ' # 例として漢字を含む
+        @user.lastname_kana = 'John' # Replace with characters other than full-width katakana
         @user.valid?
-        expect(@user.errors.full_messages).to include 'Lastname kana is invalid'
+        expect(@user.errors.full_messages).to include "Lastname kana is invalid. Input full-width katakana characters"
       end
+      
     end
 
     context '生年月日' do
