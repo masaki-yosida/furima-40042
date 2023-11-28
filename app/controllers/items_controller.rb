@@ -11,7 +11,8 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
+    @user = User.find(params[:user_id])
+    @item = @user.items.build
   end
 
   # 他のアクションも追加
