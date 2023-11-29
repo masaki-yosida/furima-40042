@@ -1,15 +1,13 @@
 <div class="items-sell-contents">
   <header class="items-sell-header">
     <%= link_to image_tag('furima-logo-color.png' , size: '185x50'), "/" %>
-
   </header>
-  <div class="items-sell-main">
-    <h2 class="items-sell-title">商品の情報を入力</h2>
-    <%= form_with(model: @item, local: true) do |form| %>
-
-      <%= render 'shared/error_messages', form: form %>
+<div class="items-sell-main">
+  <h2 class="items-sell-title">商品の情報を入力</h2>
+  <%= form_with(model: @item, local: true, multipart: true) do |form| %>
 
 
+   <%= render 'shared/error_messages', model: form.object %>
     <%# 商品画像 %>
     <div class="img-upload">
       <div class="weight-bold-text">
@@ -81,7 +79,6 @@
           <span class="indispensable">必須</span>
         </div>
         <%= form.collection_select(:deliveryday_id, Deliveryday.all, :id, :name, { id: 1, name: '---' }, class: "select-box", id: "item-scheduled-delivery") %>
-
       </div>
     </div>
     <%# /配送について %>
