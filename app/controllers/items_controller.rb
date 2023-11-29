@@ -11,6 +11,11 @@ def create
     redirect_to root_path, notice: 'Item was successfully created.'
   else
     render :new, status: :unprocessable_entity
+    @categories = Category.all  # カテゴリーなどの選択肢を再度取得
+    @situations = Situation.all
+    @postages = Postage.all
+    @prefectures = Prefecture.all
+    @deliverydays = Deliveryday.all
   end
 end
 
