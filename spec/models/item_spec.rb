@@ -1,15 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
-  config.include FactoryBot::Syntax::Methods
   describe '異常系' do
     context '商品画像' do
       it '商品画像が空では保存できない' do
-        item = build(:item, image: nil)
-        expect(item).to be_invalid  # or item.valid? if you prefer
+        item = FactoryBot.build(:item)  # Userのインスタンス生成
+        item.nickname = ''  # nicknameの値を空にす
+        item.valid?
         expect(item.errors.full_messages).to include "User must exist", "Image can't be blank", "Item name can't be blank"
-      
-        
       end
     end
     context '商品名' do
@@ -69,7 +67,6 @@ RSpec.describe Item, type: :model do
         item = FactoryBot.build(:item)  
         item.price = ''
         item.valid?
-
         expect(item.errors.full_messages).to include "User must exist", "Image can't be blank", "Price can't be blank", "Price is not a number"
       end
     end
