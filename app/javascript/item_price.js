@@ -1,19 +1,19 @@
 // 共通の関数を定義
 const updatePriceDetails = () => {
-  var priceInput = document.getElementById("item-price");
-  var addTaxDom = document.getElementById("add-tax-price");
-  var profitDom = document.getElementById("profit");
+  const priceInput = document.getElementById("item-price");
+  const addTaxDom = document.getElementById("add-tax-price");
+  const profitDom = document.getElementById("profit");
 
   // 入力された金額を取得
-  var price = parseFloat(priceInput.value) || 0;
+  const price = parseFloat(priceInput.value) || 0;
 
   // 販売手数料と販売利益を計算
-  var tax = price * 0.1;
-  var profitAmount = price - tax;
+  const tax = Math.floor(price * 0.1); // 使用例: Math.floorで切り捨て
+  const profitAmount = Math.floor(price - tax); // 使用例: Math.floorで切り捨て
 
   // 計算結果を表示
-  addTaxDom.innerHTML = Math.round(tax).toLocaleString();  // 販売手数料を整数に四捨五入して表示
-  profitDom.innerHTML = Math.round(profitAmount).toLocaleString();  // 販売利益を整数に四捨五入して表示
+  addTaxDom.innerHTML = tax.toLocaleString();  // 販売手数料を整数に切り捨てて表示
+  profitDom.innerHTML = profitAmount.toLocaleString();  // 販売利益を整数に切り捨てて表示
 };
 
 // turbo:load イベント時の処理
@@ -21,7 +21,7 @@ document.addEventListener("turbo:load", function() {
   // 初回読み込み時とページ遷移時に共通の処理を実行
   updatePriceDetails();
 
-  var priceInput = document.getElementById("item-price");
+  const priceInput = document.getElementById("item-price");
 
   priceInput.addEventListener("input", updatePriceDetails);
 });
@@ -31,7 +31,7 @@ document.addEventListener("turbo:render", function() {
   // ページ遷移時にも共通の処理を実行
   updatePriceDetails();
 
-  var priceInput = document.getElementById("item-price");
+  const priceInput = document.getElementById("item-price");
 
   priceInput.addEventListener("input", updatePriceDetails);
 });
