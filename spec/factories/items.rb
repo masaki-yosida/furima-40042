@@ -2,7 +2,9 @@ FactoryBot.define do
   factory :item do
     item_name { Faker::Commerce.product_name }
     item_explanation { Faker::Lorem.paragraph }
-    image { nil }
+    after(:build) do |message|
+      message.image.attach(io: File.open('public/images/test_image.png'), filename: 'test_image.png')
+    end
     category_id { Faker::Number.between(from: 2, to: 11) }
     situation_id { Faker::Number.between(from: 2, to: 7) }
     postage_id { Faker::Number.between(from: 2, to: 3) }
