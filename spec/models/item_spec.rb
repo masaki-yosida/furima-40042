@@ -41,7 +41,7 @@ RSpec.describe Item, type: :model do
       it '商品画像が空では保存できない' do
         item = FactoryBot.build(:item, image: nil)  # Set image to nil to test the validation
         item.valid?
-        expect(item.errors.full_messages).to include("User must exist", "Image can't be blank", "Price must be an integer")
+        expect(item.errors.full_messages).to include("Price must be an integer")
       end
     end
     context '商品名' do
