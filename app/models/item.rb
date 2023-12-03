@@ -1,7 +1,11 @@
 class Item < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :category
+  belongs_to :situation
+  belongs_to :postage
+  belongs_to :prefecture
+  belongs_to :deliveryday
   belongs_to :user
-
-
   validates :image, presence: true
   validates :item_name, presence: true
   validates :item_explanation, presence: true
