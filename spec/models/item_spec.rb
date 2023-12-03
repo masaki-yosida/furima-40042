@@ -64,10 +64,20 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include "Price must be an integer"
       end
+      it 'カテゴリーが---の場合、保存できないこと' do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include  "Price must be an integer"
+      end
       it '商品の詳細が空では保存できない' do
         @item.situation_id = ''  
         @item.valid?
         expect(@item.errors.full_messages).to include "Price must be an integer"
+      end
+      it '商品の詳細が---の場合、保存できないこと' do
+        @item.situation_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include  "Price must be an integer"
       end
     end
 
@@ -78,15 +88,30 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include "Price must be an integer"
       end
+      it '配送料が---の場合、保存できないこと' do
+        @item.postage_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include  "Price must be an integer"
+      end
       it '発送元の地域が空では保存できない' do
         @item.prefecture_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include "Price must be an integer"
       end
+      it '発送元の地域が---の場合、保存できないこと' do
+        @item.prefecture_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include  "Price must be an integer"
+      end
       it '発送までの日数が空では保存できない' do
         @item.deliveryday_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include "Price must be an integer"
+      end
+      it '発送までの日数が---の場合、保存できないこと' do
+        @item.deliveryday_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include  "Price must be an integer"
       end
     end
     context '販売価格' do
