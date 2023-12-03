@@ -10,8 +10,9 @@ def create
   if @item.save
     redirect_to root_path, notice: 'Item was successfully created.'
   else
+    flash.now[:alert] = 'Failed to create the item.'
     render :new, status: :unprocessable_entity
-    @categories = Category.all  # カテゴリーなどの選択肢を再度取得
+    @categories = Category.all
     @situations = Situation.all
     @postages = Postage.all
     @prefectures = Prefecture.all
