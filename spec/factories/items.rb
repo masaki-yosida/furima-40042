@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :item do
     item_name { Faker::Commerce.product_name }
     item_explanation { Faker::Lorem.paragraph }
-    image { nil }
+    image { Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'images', 'example.jpg'), 'image/jpeg') }
     category_id { Faker::Number.between(from: 2, to: 11) }
     situation_id { Faker::Number.between(from: 2, to: 7) }
     postage_id { Faker::Number.between(from: 2, to: 3) }
