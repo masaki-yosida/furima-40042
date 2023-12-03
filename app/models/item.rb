@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :user
-  belongs_to :category
+  belongs_to :category, class_name: 'Category'
   belongs_to :situation
   belongs_to :postage
   belongs_to :prefecture
