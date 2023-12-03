@@ -4,20 +4,20 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
   end
-  def create
-    @item = current_user.items.build(item_params)
+def create
+  @item = current_user.items.build(item_params)
 
-    if @item.save
-      redirect_to root_path, notice: 'Item was successfully created.'
-    else
-      render :new, status: :unprocessable_entity
-      @categories = Category.all  # カテゴリーなどの選択肢を再度取得
-      @situations = Situation.all
-      @postages = Postage.all
-      @prefectures = Prefecture.all
-      @deliverydays = Deliveryday.all
-    end
+  if @item.save
+    redirect_to root_path, notice: 'Item was successfully created.'
+  else
+    render :new, status: :unprocessable_entity
+    @categories = Category.all  # カテゴリーなどの選択肢を再度取得
+    @situations = Situation.all
+    @postages = Postage.all
+    @prefectures = Prefecture.all
+    @deliverydays = Deliveryday.all
   end
+end
 
   # Other methods...
 
