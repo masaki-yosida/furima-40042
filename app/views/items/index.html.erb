@@ -126,7 +126,6 @@
     新規投稿商品
   </div>
   <ul class='item-lists'>
-
     <% if @items.any? %>
       <%# Display actual items %>
       <% @items.each do |item| %>
@@ -168,12 +167,8 @@
         <% end %>
       </li>
     <% end %>
-
   </ul>
 </div>
-
-
- 
   <%# /商品一覧 %>
 </div>
 <% if user_signed_in? %>
