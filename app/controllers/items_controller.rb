@@ -33,7 +33,7 @@ class ItemsController < ApplicationController
     redirect_if_not_item_owner
 
     if @item.update(item_params)
-      redirect_to @item, notice: '商品が更新されました。'
+      redirect_to item_path(@item), notice: '商品が更新されました。'
     else
       render :edit, status: :unprocessable_entity
     end
