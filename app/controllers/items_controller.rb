@@ -24,7 +24,13 @@ end
 def show
   @item = Item.find(params[:id])
 end
-
+def update
+  if @item.update(item_params)
+    redirect_to @item, notice: '商品が更新されました。'
+  else
+    render :edit
+  end
+end
   # Other methods...
 
   private
