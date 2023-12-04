@@ -11,7 +11,7 @@ def create
     redirect_to root_path, notice: 'Item was successfully created.'
   else
     render :new, status: :unprocessable_entity
-    @categories = Category.all  # カテゴリーなどの選択肢を再度取得
+    @categories = Category.all  
     @situations = Situation.all
     @postages = Postage.all
     @prefectures = Prefecture.all
@@ -25,7 +25,7 @@ end
 def edit
   @item = Item.find(params[:id])
 
-  # Ensure that only the item's owner can edit
+
   unless current_user == @item.user
     redirect_to new_user_session_path, alert: 'Please log in to edit this item.'
   end
@@ -49,7 +49,7 @@ end
 
 
 
-  # Other methods...
+
 
   private
 

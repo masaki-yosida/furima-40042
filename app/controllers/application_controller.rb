@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth
-  before_action :set_active_storage_url_options  # Add this line
+  before_action :set_active_storage_url_options  
   before_action :configure_sign_up_params, only: [:create], if: :devise_controller?
 
   private
