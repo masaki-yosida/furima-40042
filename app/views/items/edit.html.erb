@@ -10,6 +10,7 @@ app/assets/stylesheets/items/new.css %>
     <%= form_with model: @item, url: item_path(@item), method: :patch do |form| %>
 
 
+
     <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
     <%# render 'shared/error_messages', model: f.object %>
     <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
@@ -143,7 +144,10 @@ app/assets/stylesheets/items/new.css %>
     <%# 下部ボタン %>
     <div class="sell-btn-contents">
       <%= form.submit "変更する" ,class:"sell-btn" %>
-      <%=link_to 'もどる', "#", class:"back-btn" %>
+      <%= link_to 'もどる', item_path(@item), class: 'back-btn' %>
+
+
+
     </div>
     <%# /下部ボタン %>
   </div>
