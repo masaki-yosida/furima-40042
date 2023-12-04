@@ -4,7 +4,7 @@ class User < ApplicationRecord
      
 
        validates :nickname, :birthday, presence: true
-     
+       has_many :items
 
        validates :password, format: { with: /\A(?=.*[a-zA-Z])(?=.*\d).+\z/, message: "must contain at least one letter and one number" }
        validates_confirmation_of :password, message: "doesn't match Password"
