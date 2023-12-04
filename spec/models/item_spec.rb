@@ -136,5 +136,13 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include "Price must be less than or equal to 9999999"
       end
     end
+    context 'ユーザーとの紐付けがない場合' do
+      it '保存できないこと' do
+        # ユーザーとの紐付けを解除
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist", "Price must be an integer")
+      end
+    end
   end
 end
