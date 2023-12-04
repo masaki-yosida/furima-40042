@@ -1,16 +1,11 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit]
-  before_action :set_item, only: [:edit, :update, :show, :destroy]
+  before_action :set_item, only: [:edit, :update, :show]
 
   def new
     @item = Item.new
   end
 
-  def destroy
-    # Your custom deletion logic here
-    @item.destroy
-    redirect_to items_path, notice: 'Item was successfully destroyed.'
-  end
   def create
     @item = current_user.items.build(item_params)
 
