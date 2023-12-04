@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit]
 
   def new
     @item = Item.new
@@ -21,9 +21,17 @@ end
 def index
   @items = Item.all
 end
+
 def edit
   @item = Item.find(params[:id])
+
+  # Ensure that only the item's owner can edit
+  unless current_user == @item.user
+    redirect_to new_user_session_path, alert: 'Please log in to edit this item.'
+  end
 end
+
+
 def show
   @item = Item.find(params[:id])
 end
@@ -35,7 +43,7 @@ def update
   if @item.update(item_params)
     redirect_to @item, notice: '商品が更新されました。'
   else
-    render :edit
+    render :edit, status: :unprocessable_entity
   end
 end
 

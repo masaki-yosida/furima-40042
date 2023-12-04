@@ -16,6 +16,12 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :password_confirmation, :nickname, :firstname_kanji, :lirstname_kanji, :firstname_kana, :lastname_kana, :birthday])
     end
   end
+  def authenticate_user!
+    unless user_signed_in?
+      redirect_to new_user_session_path, alert: 'You need to sign in before editing items.'
+    end
+  end
+
 
   def set_active_storage_url_options
     ActiveStorage::Current.url_options = {
