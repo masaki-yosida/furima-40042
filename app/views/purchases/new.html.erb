@@ -1,0 +1,56 @@
+<%= render "shared/second-header" %>
+
+<div class='transaction-contents'>
+  <div class='transaction-main'>
+    <h1 class='transaction-title-text'>
+      購入内容の確認
+    </h1>
+
+    <%# 商品の購入内容の表示 %>
+    <div class='buy-item-info'>
+      <%= image_tag "item-sample.png", class: 'buy-item-img' %>
+      <div class='buy-item-right-content'>
+        <h2 class='buy-item-text'>
+          <%= @item.name %>
+        </h2>
+        <div class='buy-item-price'>
+          <p class='item-price-text'>¥<%= @item.price %></p>
+          <p class='item-price-sub-text'><%= @item.shipping_fee %></p>
+        </div>
+      </div>
+    </div>
+    <%# /商品の購入内容の表示 %>
+
+    <%# 支払金額の表示 %>
+    <div class='item-payment'>
+      <h1 class='item-payment-title'>
+        支払金額
+      </h1>
+      <p class='item-payment-price'>
+        ¥<%= @item.price %>（商品価格） + 送料
+      </p>
+    </div>
+    <%# /支払金額の表示 %>
+
+    <%= form_with id: 'charge-form', class: 'transaction-form-wrap', local: true do |f| %>
+      <%# カード情報の入力フォーム %>
+      <div class='credit-card-form'>
+        <!-- カード情報の入力フォームの内容を追加 -->
+      </div>
+      <%# /カード情報の入力フォーム %>
+
+      <%# 配送先情報の入力フォーム %>
+      <div class='shipping-address-form'>
+        <!-- 配送先情報の入力フォームの内容を追加 -->
+      </div>
+      <%# /配送先情報の入力フォーム %>
+
+      <div class='buy-btn'>
+        <%= f.submit "購入", class: "buy-red-btn", id: "button" %>
+      </div>
+    <% end %>
+
+  </div>
+</div>
+
+<%= render "shared/second-footer" %>
