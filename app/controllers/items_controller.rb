@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit]
-  before_action :set_item, only: [:edit, :update, :show]
+  before_action :set_item, only: [:edit, :update, :show, :destroy]
 
   def new
     @item = Item.new
@@ -27,6 +27,11 @@ class ItemsController < ApplicationController
 
   def show
     
+  end
+
+  def destroy
+    @item.destroy
+    redirect_to items_path, notice: '商品が削除されました。'
   end
 
   def update
