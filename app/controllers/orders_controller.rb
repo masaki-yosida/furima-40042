@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
   def index
-    # Your index action implementation goes here
+    @item = Item.last
   end
 end
