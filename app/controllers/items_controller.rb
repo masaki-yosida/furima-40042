@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit]
-  before_action :set_item, only: [:edit, :update, :show]
+  before_action :set_item, only: [:edit, :update, :show, :destroy]
+  before_action :redirect_if_not_item_owner, only: [:edit, :destroy]
+
 
   def new
     @item = Item.new
@@ -27,6 +29,11 @@ class ItemsController < ApplicationController
 
   def show
     
+  end
+
+  def destroy
+    @item.destroy
+    redirect_to items_path, notice: '商品が削除されました。'
   end
 
   def update
@@ -58,8 +65,7 @@ class ItemsController < ApplicationController
   end
 
   def redirect_if_not_item_owner
-    unless current_user == @item.user
-      redirect_to new_user_session_path, alert: 'Please log in to edit this item.'
-    end
+    return if user_signed_in? && current_user == @item.user
+    redirect_to root_path, alert: 'Please log in to perform this action.'
   end
 end
