@@ -32,8 +32,6 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    redirect_if_not_item_owner
-
     @item.destroy
     redirect_to items_path, notice: '商品が削除されました。'
   end
