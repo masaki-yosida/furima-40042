@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!, except: :index
 
   def index
-    @item = Item.last
+    @item = Item.find(params[:item_id])
   end
 
   def create
@@ -15,7 +15,6 @@ class OrdersController < ApplicationController
 
       if shipping.save
         pay_item
-        @order = Order.create(purchase: purchase, shipping: shipping)
         redirect_to root_path, notice: '購入が完了しました。'
       else
         render :index
