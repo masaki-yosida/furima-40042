@@ -5,7 +5,4 @@ class Order < ApplicationRecord
   belongs_to :shipping
   validates :token, presence: true
   validates :price, presence: true
-  belongs_to :user
-  has_many :order_items
-  has_many :items, through: :order_items
 end
