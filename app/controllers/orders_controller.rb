@@ -8,13 +8,13 @@ class OrdersController < ApplicationController
   def create
     @item = Item.find(params[:item_id])
     purchase = Purchase.new(user_id: current_user.id, item: @item)
-  
+
     if purchase.save
       shipping = Shipping.new(shipping_params)
-      shipping.purchase = purchase  # Purchase レコードを関連づける
-  
+      shipping.purchase = purchase
+
       if shipping.save
-        # Order モデルを作成する
+        pay_item
         @order = Order.create(purchase: purchase, shipping: shipping)
         redirect_to root_path, notice: '購入が完了しました。'
       else
@@ -26,6 +26,7 @@ class OrdersController < ApplicationController
       logger.error("Purchase Errors: #{purchase.errors.full_messages}")
     end
   end
+
   
   
 
@@ -36,6 +37,15 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:item_id, :other_attributes)  # 必要に応じて他の属性も追加
+    params.permit(:item_id, :other_attributes)  # 必要に応じて他の属性も追加
   end
+  def pay_item
+    Payjp.api_key = "sk_test_20f0b00a57fc65033f27b598"  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+        Payjp::Charge.create(
+          amount: @item.price,
+          card: params[:token],
+          currency: 'jpy'
+        )
+  end
+
 end
