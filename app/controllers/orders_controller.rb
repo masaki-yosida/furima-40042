@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
 
   def index
     @item = Item.last
+    @orders = current_user.orders 
   end
 
   def create
