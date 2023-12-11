@@ -1,9 +1,15 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, except: :index
-
   def index
-    @item = Item.last
+    @item = Item.find(params[:id])
+    @orders = current_user.orders  # Or whatever logic you have for displaying orders
   end
+
+  def show
+    @order = Order.find(params[:id])
+    @item = @order.item  # Or however you associate items with orders
+  end
+
 
   def create
     @item = Item.find(params[:item_id])
@@ -14,7 +20,12 @@ class OrdersController < ApplicationController
       shipping.purchase = purchase
 
       if shipping.save
-        pay_item
+        Payjp.api_key = "sk_test_20f0b00a57fc65033f27b598"  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+        Payjp::Charge.create(
+          amount: @item.price,
+          card: params[:token],
+          currency: 'jpy'
+        )
         @order = Order.create(purchase: purchase, shipping: shipping)
         redirect_to root_path, notice: '購入が完了しました。'
       else
@@ -39,13 +50,5 @@ class OrdersController < ApplicationController
   def order_params
     params.permit(:item_id, :other_attributes)  # 必要に応じて他の属性も追加
   end
-  def pay_item
-    Payjp.api_key = "sk_test_20f0b00a57fc65033f27b598"  # 自身のPAY.JPテスト秘密鍵を記述しましょう
-        Payjp::Charge.create(
-          amount: @item.price,
-          card: params[:token],
-          currency: 'jpy'
-        )
-  end
-
+  
 end
