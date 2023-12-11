@@ -7,19 +7,24 @@
     </h1>
 
     <%# 購入内容の表示 %>
+<% @orders.each do |order| %>
+  <% order.items.each do |item| %>
     <div class='buy-item-info'>
-      <%= image_tag @item.image.url, class: 'buy-item-img' %>
+      <%= image_tag item.image.url, class: 'buy-item-img' %>
       <div class='buy-item-right-content'>
         <h2 class='buy-item-text'>
-          <%= @item.item_name %>
+          <%= item.item_name %>
         </h2>
         <div class='buy-item-price'>
-          <p class='item-price-text'>¥<%= number_with_delimiter(@item.price, delimiter: ',') %></p>
-          <p class='item-price-sub-text'><%= @item.postage.name %></p>
+          <p class='item-price-text'>¥<%= number_with_delimiter(item.price, delimiter: ',') %></p>
+          <p class='item-price-sub-text'><%= item.postage.name %></p>
         </div>
       </div>
     </div>
-    <%# /購入内容の表示 %>
+  <% end %>
+<% end %>
+<%# /購入内容の表示 %>
+
 
     <%# 支払額の表示 %>
     <div class='item-payment'>

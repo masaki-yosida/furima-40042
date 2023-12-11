@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!, except: :index
 
   def index
-    @item = Item.last
+    @orders = current_user.orders.includes(:items)  # Fetch orders associated with the current user
   end
 
   def create
@@ -27,9 +27,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  
-  
-
   private
 
   def shipping_params
@@ -37,15 +34,15 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.permit(:item_id, :other_attributes)  # 必要に応じて他の属性も追加
-  end
-  def pay_item
-    Payjp.api_key = "sk_test_20f0b00a57fc65033f27b598"  # 自身のPAY.JPテスト秘密鍵を記述しましょう
-        Payjp::Charge.create(
-          amount: @item.price,
-          card: params[:token],
-          currency: 'jpy'
-        )
+    params.permit(:item_id, :other_attributes)  # Modify this based on your actual form structure
   end
 
+  def pay_item
+    Payjp.api_key = "sk_test_20f0b00a57fc65033f27b598"
+    Payjp::Charge.create(
+      amount: @item.price,
+      card: params[:token],
+      currency: 'jpy'
+    )
+  end
 end
