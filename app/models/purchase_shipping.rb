@@ -14,7 +14,6 @@ class PurchaseShipping
 
 
   def save
-    # 寄付情報を保存し、変数donationに代入する
     purchase= Purchase.create(item_id: item_id, user_id: user_id)
     
     Shipping.create(post_code: post_code,
