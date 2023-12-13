@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
     @purchase_shipping = PurchaseShipping.new
   end
+  
 
   def new
   end
@@ -36,5 +37,14 @@ class OrdersController < ApplicationController
       card: params[:token],
       currency: 'jpy'
     )
+  end
+  def index
+    # ログイン中で、かつ自身が出品していない売却済みの商品の場合
+    if current_user && !current_user.items.where(sold: true).exists?
+      redirect_to sold_items_path
+    else
+      # 通常の処理をここに記述
+      @orders = current_user.orders
+    end
   end
 end

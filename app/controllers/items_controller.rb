@@ -75,4 +75,5 @@ class ItemsController < ApplicationController
       # 出品者でなくてもアクセス可能な場合、何もしない
     end
   end
+
 end
