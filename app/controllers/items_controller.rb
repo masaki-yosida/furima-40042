@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit]
   before_action :set_item, only: [:edit, :update, :show, :destroy]
   before_action :redirect_if_not_item_owner, only: [:edit, :destroy]
-  before_action :redirect_if_sold_out, only: [:edit]
+  before_action :redirect_if_not_item_owner, only: [:edit]
 
 
 
@@ -66,7 +66,7 @@ class ItemsController < ApplicationController
     @deliverydays = Deliveryday.all
   end
 
-  def redirect_if_not_item_owner
+  def redirect_if_sold_out
     return if user_signed_in? && current_user == @item.user
 
     if @item.sold_out?
