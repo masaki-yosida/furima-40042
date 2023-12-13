@@ -68,15 +68,11 @@ class ItemsController < ApplicationController
 
   def redirect_if_not_item_owner
     return if user_signed_in? && current_user == @item.user
-  
+
     if @item.sold_out?
       redirect_to root_path, alert: 'この商品は売り切れています'
     else
-      # 商品の出品者でない場合、直接ビューを表示
-      render file: 'app/views/orders/index.html.erb', status: :ok
+      # 出品者でなくてもアクセス可能な場合、何もしない
     end
   end
-  
-  
-  
 end

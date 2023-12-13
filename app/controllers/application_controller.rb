@@ -2,8 +2,6 @@ class ApplicationController < ActionController::Base
   before_action :basic_auth
   before_action :set_active_storage_url_options  
   before_action :configure_sign_up_params, only: [:create], if: :devise_controller?
-  before_action :authenticate_user!, except: :index
-  before_action :redirect_if_not_item_owner, only: [:edit]
 
   private
 
@@ -29,20 +27,5 @@ class ApplicationController < ActionController::Base
     ActiveStorage::Current.url_options = {
       host: request.base_url
     }
-  end
-  def redirect_if_not_item_owner
-    @item = Item.find(params[:item_id])
-  
-    puts "Current User: #{current_user.inspect}"
-    puts "Item Owner: #{@item.user.inspect}"
-  
-    return if user_signed_in? && current_user == @item.user
-  
-    if @item.sold_out?
-      redirect_to root_path, alert: 'この商品は売り切れています'
-    else
-      # ログアウト状態の場合、ログインページにリダイレクト
-      redirect_to new_user_session_path, alert: 'ログインが必要です'
-    end
   end
 end
