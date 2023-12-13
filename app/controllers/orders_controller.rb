@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, except: :index
+  before_action :redirect_if_not_item_owner, only: [:edit]
 
   def index
     @item = Item.find(params[:item_id])
@@ -37,4 +38,20 @@ class OrdersController < ApplicationController
       currency: 'jpy'
     )
   end
+  def redirect_if_not_item_owner
+    @item = Item.find(params[:item_id])
+  
+    puts "Current User: #{current_user.inspect}"
+    puts "Item Owner: #{@item.user.inspect}"
+  
+    return if user_signed_in? && current_user == @item.user
+  
+    if @item.sold_out?
+      redirect_to root_path, alert: 'この商品は売り切れています'
+    else
+      # ログアウト状態の場合、ログインページにリダイレクト
+      redirect_to new_user_session_path, alert: 'ログインが必要です'
+    end
+  end
+  
 end
