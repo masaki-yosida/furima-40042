@@ -10,6 +10,11 @@ RSpec.describe PurchaseShipping, type: :model do
 
     context '正常系' do
       it 'すべての値が正しく入力されていれば購入できること' do
+        user = FactoryBot.create(:user)
+        item = FactoryBot.create(:item, user: user)
+        # 正しい値を持つPurchaseShippingを作成する
+        @purchase_shipping = FactoryBot.build(:purchase_shipping, user: user, item: item)
+        # バリデーションを確認する
         expect(@purchase_shipping).to be_valid
       end
       it '建物名が空でも購入できること' do
@@ -77,12 +82,12 @@ RSpec.describe PurchaseShipping, type: :model do
       it 'item_idが紐づいていなければ購入できないこと' do
         @purchase_shipping.item_id = ''
         @purchase_shipping.valid?
-        expect(@purchase_shipping.errors.full_messages).to include("User can't be blank")
+
+        expect(@purchase_shipping.errors.full_messages).to include("Item can't be blank")
       end
       it 'purchase_idが紐づいていなければ購入できないこと' do
         @purchase_shipping.purchase_id = ''
         @purchase_shipping.valid?
-        binding.pry
         expect(@purchase_shipping.errors.full_messages).to include("Product can't be blank")
       end
 

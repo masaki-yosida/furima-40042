@@ -3,6 +3,12 @@ class PurchaseShipping
   include ActiveModel::Model
   attr_accessor :user_id, :item_id, :post_code, :prefecture_id, :municipalities, :building_name, :street_address, :telephone_number, :presence_id, :token 
 
+
+
+
+
+  validates :user_id, presence: true
+  validates :item_id, presence: true
   validates :token, presence: true
   validates :post_code, presence: true
   validates :prefecture_id, numericality: { other_than: 1 , message: "can't be blank"}
@@ -23,6 +29,12 @@ class PurchaseShipping
      telephone_number: telephone_number,
      building_name: building_name,
      purchase_id: purchase.id)
+  end
+  def user=(user)
+    @user = user
+  end
+  def item=(item)
+    @item = item
   end
 
 end
