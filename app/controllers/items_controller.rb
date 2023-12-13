@@ -66,14 +66,15 @@ class ItemsController < ApplicationController
     @deliverydays = Deliveryday.all
   end
 
+  
   def redirect_if_not_item_owner
-    return if user_signed_in? && current_user == @item.user
-
+    return if user_signed_in? && current_user == @item.user && !@item.sold_out?
+  
     if @item.sold_out?
       redirect_to root_path, alert: 'この商品は売り切れています'
     else
-      # 出品者でなくてもアクセス可能な場合、何もしない
+      redirect_to root_path, alert: '自分が出品した商品ではありません'
     end
   end
-
-end
+  
+end  
