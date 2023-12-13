@@ -27,7 +27,6 @@ RSpec.describe PurchaseShipping, type: :model do
       it '郵便番号は『３桁ハイフン４桁』半角英数字でないと保存できないこと' do
         @purchase_shipping = FactoryBot.build(:purchase_shipping, post_code: 'invalid_code')
         @purchase_shipping.valid?
-        binding.pry
         expect(@purchase_shipping.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
       end
       it '都道府県に「---」が選択されている場合は購入できないこと' do
@@ -53,7 +52,7 @@ RSpec.describe PurchaseShipping, type: :model do
       it '電話番号が9桁以下だと購入できないこと' do
         @purchase_shipping.telephone_number = '090123456'
         @purchase_shipping.valid?
-        expect(@purchase_shipping.errors.full_messages).to include("Phone number is invalid")
+        expect(@purchase_shipping.errors.full_messages).to include("Telephone number は10桁以上11桁以内の半角数値で入力してください")
       end
       it '電話番号が12桁以上だと購入できない' do
         @purchase_shipping.telephone_number = '090123456789'
@@ -83,6 +82,7 @@ RSpec.describe PurchaseShipping, type: :model do
       it 'purchase_idが紐づいていなければ購入できないこと' do
         @purchase_shipping.purchase_id = ''
         @purchase_shipping.valid?
+        binding.pry
         expect(@purchase_shipping.errors.full_messages).to include("Product can't be blank")
       end
 
