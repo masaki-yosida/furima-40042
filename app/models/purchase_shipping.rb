@@ -1,11 +1,11 @@
-# app/models/order.rb
+# app/models/purchase_shipping
 class PurchaseShipping
   include ActiveModel::Model
   attr_accessor :user_id, :item_id, :post_code, :prefecture_id, :municipalities, :building_name, :street_address, :telephone_number, :presence_id, :token 
 
   validates :token, presence: true
   validates :post_code, presence: true
-  validates :prefecture_id, presence: true
+  validates :prefecture_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :municipalities, presence: true
   validates :street_address, presence: true
   validates :telephone_number, presence: true

@@ -9,10 +9,10 @@ class Item < ApplicationRecord
   has_one  :shipping
   has_many :purchases
 
+
+
+
   def sold_out?
-    # 在庫管理などの条件に基づいて売り切れているかどうかを判断するロジックを実装する
-    # 例えば、在庫が0の場合に売り切れとするなど
-    # 以下は単純な例です
     purchases.present?
   end
 
