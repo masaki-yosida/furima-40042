@@ -1,7 +1,5 @@
 FactoryBot.define do
   factory :purchase_shipping do
-    association :user
-    association :item
     post_code { '123-4567' }
     prefecture_id { 3 }
     municipalities { '横浜市緑区' }
