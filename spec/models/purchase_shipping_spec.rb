@@ -55,14 +55,14 @@ RSpec.describe PurchaseShipping, type: :model do
         expect(@purchase_shipping.errors.full_messages).to include("Telephone number は10桁以上11桁以内の半角数値で入力してください")
       end
       it '電話番号が12桁以上だと購入できない' do
-        @purchase_shipping.telephone_number = '090123456789'
+        @purchase_shipping.telephone_number = '01234567890123'
         @purchase_shipping.valid?
-        expect(@purchase_shipping.errors.full_messages).to include("Phone number is invalid")
+        expect(@purchase_shipping.errors.full_messages).to include("Telephone number は10桁以上11桁以内の半角数値で入力してください")
       end
       it '電話番号が半角数値でないと購入できないこと' do
-        @purchase_shipping.telephone_number = '09012341234'
+        @purchase_shipping.telephone_number = '123456789a'
         @purchase_shipping.valid?
-        expect(@purchase_shipping.errors.full_messages).to include("Phone number is invalid")
+        expect(@purchase_shipping.errors.full_messages).to include("Telephone number は10桁以上11桁以内の半角数値で入力してください")
       end
       it 'tokenが空では購入できないこと' do
         @purchase_shipping.token = nil
