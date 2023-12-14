@@ -2,6 +2,8 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit]
   before_action :set_item, only: [:edit, :update, :show, :destroy]
   before_action :redirect_if_not_item_owner, only: [:edit, :destroy]
+ 
+
 
 
   def new
@@ -64,8 +66,15 @@ class ItemsController < ApplicationController
     @deliverydays = Deliveryday.all
   end
 
+  
   def redirect_if_not_item_owner
-    return if user_signed_in? && current_user == @item.user
-    redirect_to root_path, alert: 'Please log in to perform this action.'
+    return if user_signed_in? && current_user == @item.user && !@item.sold_out?
+  
+    if @item.sold_out?
+      redirect_to root_path, alert: 'この商品は売り切れています'
+    else
+      redirect_to root_path, alert: '自分が出品した商品ではありません'
+    end
   end
-end
+  
+end  

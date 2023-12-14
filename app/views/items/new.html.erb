@@ -5,12 +5,11 @@
   </header>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
-    <%= form_with(model: @item, local: true) do |form| %>
+    <%= form_with(model: @item, local: true, data: { turbo: false })  do |form| %>
 
     <%= render 'shared/error_messages', model: form.object %>
 
 
-    <%# 商品画像 %>
     <div class="img-upload">
       <div class="weight-bold-text">
         商品画像
@@ -23,8 +22,6 @@
         <%= form.file_field :image, id: "item-image" %>
       </div>
     </div>
-    <%# /商品画像 %>
-    <%# 商品名と商品説明 %>
     <div class="new-items">
       <div class="weight-bold-text">
         商品名
@@ -80,9 +77,6 @@
 
       </div>
     </div>
-    <%# /配送について %>
-
-    <%# 販売価格 %>
 <div class="sell-price">
   <div class="weight-bold-text question-text">
     <span>販売価格<br>(¥300〜9,999,999)</span>
@@ -114,7 +108,7 @@
 
 
 
-    <%# 注意書き %>
+
     <div class="caution">
       <p class="sentence">
         <a href="#">禁止されている出品、</a>
@@ -132,13 +126,11 @@
         に同意したことになります。
       </p>
     </div>
-    <%# /注意書き %>
-    <%# 下部ボタン %>
     <div class="sell-btn-contents">
       <%= form.submit "出品する" ,class:"sell-btn" %>
       <%=link_to 'もどる', root_path, class:"back-btn" %>
     </div>
-    <%# /下部ボタン %>
+
   </div>
   <% end %>
 

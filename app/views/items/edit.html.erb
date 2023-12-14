@@ -6,7 +6,7 @@
   </header>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
-    <%= form_with model: @item, url: item_path(@item), method: :patch do |form| %>
+    <%= form_with data: { turbo: false }, model: @item, url: item_path(@item), method: :patch do |form| %>
 
 
 
@@ -79,9 +79,6 @@
 
       </div>
     </div>
-    <%# /配送について %>
-
-    <%# 販売価格 %>
     <div class="sell-price">
       <div class="weight-bold-text question-text">
         <span>販売価格<br>(¥300〜9,999,999)</span>
