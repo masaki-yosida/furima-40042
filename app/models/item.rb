@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :deliveryday
   belongs_to :user
-  has_one :purchases
+  has_many :purchases
 
 
 
