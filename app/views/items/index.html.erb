@@ -133,14 +133,12 @@
           <%= link_to item_path(item) do %>
           <div class='item-img-content'>
             <%= image_tag item.image.url(host: request.base_url), class: "item-img" %>
-            <%# 商品が売れていればsold outを表示しましょう %>
-  <% if item.sold_out? %>
-    <div class='sold-out'>
-      <span>Sold Out!!</span>
-    </div>
-  <% end %>
-  <%# //商品が売れていればsold outを表示しましょう %>
-            </div>
+            <% if item.sold_out? %>
+              <div class='sold-out'>
+                <span>Sold Out!!</span>
+              </div>
+            <% end %>
+          </div>
             <div class='item-info'>
               <h3 class='item-name'>
                 <%= item.item_name %>
@@ -157,7 +155,6 @@
         </li>
       <% end %>
     <% else %>
-      <%# Display dummy content when there are no items %>
       <li class='list'>
         <%= link_to '#' do %>
           <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
@@ -178,7 +175,6 @@
     <% end %>
   </ul>
 </div>
-  <%# /商品一覧 %>
 </div>
 <% if user_signed_in? %>
   <%= link_to new_item_path, data: { turbo: false }, class: 'purchase-btn' do %>
