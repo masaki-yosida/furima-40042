@@ -19,6 +19,16 @@ class OrdersController < ApplicationController
 
   def new
   end
+  def create
+    @item = Item.find(params[:item_id])
+    @purchase_shipping = PurchaseShipping.new(purchase_params)
+    if 
+      @purchase_shipping.valid?
+      @purchase_shipping.save
+      pay_item
+      redirect_to root_path
+    end
+  end
 
   def index
     @item = Item.find(params[:item_id] || params[:id])
