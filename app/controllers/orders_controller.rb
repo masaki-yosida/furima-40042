@@ -30,6 +30,8 @@ class OrdersController < ApplicationController
       @purchase_shipping.save
       pay_item
       redirect_to root_path
+    else
+      render :index, status: :unprocessable_entity
     end
   end
   
