@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
 
   def index
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     if user_signed_in?
       if current_user == @item.user
         redirect_to root_path, alert: '自分が出品した商品の購入ページにはアクセスできません'
@@ -47,7 +48,7 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = "sk_test_20f0b00a57fc65033f27b598"
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
       amount: @item.price,
       card: params[:token],
