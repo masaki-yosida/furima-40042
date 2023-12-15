@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
 
        validates :password, format: { with: /\A(?=.*[a-zA-Z])(?=.*\d).+\z/, message: "is invalid. Include both letters and numbers" }
-       validates_confirmation_of :password, message: "doesn't match Password"
+       
      
 
        validates :firstname_kanji, :lirstname_kanji, presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: "is invalid. Input full-width characters" }
