@@ -242,7 +242,6 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  flex-direction: row-reverse; 
 }
 
 .item-lists>.list {
