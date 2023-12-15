@@ -8,7 +8,7 @@ class User < ApplicationRecord
        has_many :purchases
 
 
-       validates :password, format: { with: /\A(?=.*[a-zA-Z])(?=.*\d).+\z/, message: "must contain at least one letter and one number" }
+       validates :password, format: { with: /\A(?=.*[a-zA-Z])(?=.*\d).+\z/, message: "is invalid. Include both letters and numbers" }
        validates_confirmation_of :password, message: "doesn't match Password"
      
 

@@ -128,32 +128,34 @@
   </div>
   <ul class='item-lists'>
     <% if @items.any? %>
-      <% @items.each do |item| %>
-        <li class='list'>
-          <%= link_to item_path(item) do %>
-          <div class='item-img-content'>
-            <%= image_tag item.image.url(host: request.base_url), class: "item-img" %>
-            <% if item.sold_out? %>
-              <div class='sold-out'>
-                <span>Sold Out!!</span>
-              </div>
-            <% end %>
+    <% @items.each do |item| %>
+  <li class='list'>
+    <%= link_to item_path(item) do %>
+      <div class='item-img-content'>
+        <%= image_tag item.image.url(host: request.base_url), class: "item-img" %>
+        <% if item.sold_out? %>
+          <div class='sold-out'>
+            <span>Sold Out!!</span>
           </div>
-            <div class='item-info'>
-              <h3 class='item-name'>
-                <%= item.item_name %>
-              </h3>
-              <div class='item-price'>
-                <span><%= item.price %>円<br>(税込み)</span>
-                <div class='star-btn'>
-                  <%= image_tag "star.png", class: "star-icon" %>
-                  <span class='star-count'>0</span>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        </li>
-      <% end %>
+        <% end %>
+      </div>
+      <div class='item-info'>
+        <h3 class='item-name'>
+          <%= item.item_name %>       
+        </h3>
+        <div class='item-price'>
+          <span><%= item.price %>円<br><%= item.postage.name %></span>
+          <div class='star-btn'>
+            <%= image_tag "star.png", class: "star-icon" %>
+            <span class='star-count'>0</span>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </li>
+<% end %>
+
+      
     <% else %>
       <li class='list'>
         <%= link_to '#' do %>
